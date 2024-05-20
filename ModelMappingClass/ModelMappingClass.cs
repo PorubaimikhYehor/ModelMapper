@@ -3,7 +3,7 @@ using System;
 
 public class ModelMapper
 {
-	public TOut Map<TIn, TOut>(TIn source) 
+	public TOut Map<TOut>(object source) 
 	{
 		return (TOut)MapItem(source, typeof(TOut));
 	}

@@ -20,7 +20,7 @@ namespace ModelMappingClass.Tests
         public void Map_SameType_ReturnsSameObject()
         {
             int source = 5;
-            int result = _mapper.Map<int, int>(source);
+            int result = _mapper.Map<int>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(source, result);
@@ -30,7 +30,7 @@ namespace ModelMappingClass.Tests
         public void Map_PrimitiveTypes_ReturnsMappedObject()
         {
             string source = "Hello";
-            string result = _mapper.Map<string, string>(source);
+            string result = _mapper.Map<string>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(source, result);
@@ -40,7 +40,7 @@ namespace ModelMappingClass.Tests
         public void Map_ListOfPrimitives_ReturnsMappedList()
         {
             var source = new List<int> { 1, 2, 3 };
-            var result = _mapper.Map<List<int>, List<int>>(source);
+            var result = _mapper.Map<List<int>>(source);
 
             _output.WriteLine($"Source: {string.Join(", ", source)}, Result: {string.Join(", ", result)}");
             Assert.Equal(source, result);
@@ -49,7 +49,7 @@ namespace ModelMappingClass.Tests
         public void Map_ListOfString_ReturnsMappedList()
         {
             var source = new List<string> { "s1", "s2", "s3" };
-            var result = _mapper.Map<List<string>, List<string>>(source);
+            var result = _mapper.Map<List<string>>(source);
 
             _output.WriteLine($"Source: {string.Join(", ", source)}, Result: {string.Join(", ", result)}");
             Assert.Equal(source, result);
@@ -59,7 +59,7 @@ namespace ModelMappingClass.Tests
         public void Map_ListOfString_ReturnsMappedList2()
         {
             var source = new List<string> { "" };
-            var result = _mapper.Map<List<string>, List<string>>(source);
+            var result = _mapper.Map<List<string>>(source);
 
             _output.WriteLine($"Source: {string.Join(", ", source)}, Result: {string.Join(", ", result)}");
             Assert.Equal(source, result);
@@ -69,7 +69,7 @@ namespace ModelMappingClass.Tests
         public void Map_ObjectToString_EmptyString()
         {
             var source = new SourceClass() {Name = "test"};
-            string result = _mapper.Map<SourceClass, string>(source);
+            string result = _mapper.Map< string>(source);
 
             _output.WriteLine($"Source: {source.Name}, Result: {result}");
             Assert.Empty(result);
@@ -79,7 +79,7 @@ namespace ModelMappingClass.Tests
         public void Map_StringToObject_EmptyObject()
         {
             string source = "test";
-            SourceClass result = _mapper.Map<string, SourceClass>(source);
+            SourceClass result = _mapper.Map< SourceClass>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result.ToString()}");
             Assert.NotNull(result);
@@ -94,7 +94,7 @@ namespace ModelMappingClass.Tests
                 { "one", 1 },
                 { "two", 2 }
             };
-            var result = _mapper.Map<Dictionary<string, int>, Dictionary<string, int>>(source);
+            var result = _mapper.Map<Dictionary<string, int>>(source);
 
             _output.WriteLine($"Source: {string.Join(", ", source)}, Result: {string.Join(", ", result)}");
             Assert.Equal(source, result);
@@ -105,7 +105,7 @@ namespace ModelMappingClass.Tests
         [InlineData(SourceEnum.Three, DestinationEnum.One)]
         public void Map_Enum_ReturnsMappedEnum(SourceEnum source, DestinationEnum expected)
         {
-            DestinationEnum result = _mapper.Map<SourceEnum, DestinationEnum>(source);
+            DestinationEnum result = _mapper.Map< DestinationEnum>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(expected, result);
@@ -115,10 +115,9 @@ namespace ModelMappingClass.Tests
         [InlineData("Three", DestinationEnum.One)]
         public void Map_SyringToEnum_ReturnsMappedEnum(string source, DestinationEnum expected)
         {
-            DestinationEnum result = _mapper.Map<string, DestinationEnum>(source);
+            DestinationEnum result = _mapper.Map< DestinationEnum>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
-            Console.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(expected, result);
         }
 
@@ -126,7 +125,7 @@ namespace ModelMappingClass.Tests
         public void Map_EnumToString_ReturnsString()
         {
             SourceEnum source = SourceEnum.One;
-            string result = _mapper.Map<SourceEnum, string>(source);
+            string result = _mapper.Map<string>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(source.ToString(), result);
@@ -136,7 +135,7 @@ namespace ModelMappingClass.Tests
         public void Map_StringToEnum_ReturnsMappedEnum()
         {
             SourceEnum source = SourceEnum.One;
-            DestinationEnum result = _mapper.Map<SourceEnum, DestinationEnum>(source);
+            DestinationEnum result = _mapper.Map< DestinationEnum>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(DestinationEnum.One, result);
@@ -151,7 +150,7 @@ namespace ModelMappingClass.Tests
                 Name = "Source",
                 SubClass = new SubClass { Value = "Sub" }
             };
-            var result = _mapper.Map<SourceClass, DestinationClass>(source);
+            var result = _mapper.Map< DestinationClass>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.NotNull(result);
@@ -167,7 +166,7 @@ namespace ModelMappingClass.Tests
         [InlineData(-1, "")]
         public void Map_DifferentPrimitiveTypes_ReturnsDefaultDestinationType(int source, string expected)
         {
-            string result = _mapper.Map<int, string>(source);
+            string result = _mapper.Map< string>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.Equal(expected, result);
@@ -177,7 +176,7 @@ namespace ModelMappingClass.Tests
         public void Map_ListWithDifferentItemType_ReturnsListWithDefaultValues()
         {
             var source = new List<int> { 1, 2, 3 };
-            var result = _mapper.Map<List<int>, List<string>>(source);
+            var result = _mapper.Map<List<string>>(source);
 
             var expected = new List<string> { string.Empty, string.Empty, string.Empty };
 
@@ -194,7 +193,7 @@ namespace ModelMappingClass.Tests
                 { "one", 1 },
                 { "two", 2 }
             };
-            var result = _mapper.Map<Dictionary<string, int>, Dictionary<int, int>>(source);
+            var result = _mapper.Map<Dictionary<int, int>>(source);
 
             _output.WriteLine($"Source: {string.Join(", ", source)}, Result: {string.Join(", ", result)}");
             Assert.NotNull(result);
@@ -210,7 +209,7 @@ namespace ModelMappingClass.Tests
                 Name = "Source",
                 SubClass = new SubClass { Value = "Sub" }
             };
-            var result = _mapper.Map<SourceClass, AnotherClass>(source);
+            var result = _mapper.Map<AnotherClass>(source);
 
             _output.WriteLine($"Source: {source}, Result: {result}");
             Assert.NotNull(result);
@@ -226,7 +225,7 @@ namespace ModelMappingClass.Tests
                 new SourceClass { Id = 1, Name = "Item1", SubClass = new SubClass { Value = "Sub1" } },
                 new SourceClass { Id = 2, Name = "Item2", SubClass = new SubClass { Value = "Sub2" } }
             };
-            var result = _mapper.Map<List<SourceClass>, List<DestinationClass>>(source);
+            var result = _mapper.Map<List<DestinationClass>>(source);
 
             Assert.NotNull(result);
             Assert.Equal(source.Count, result.Count);
@@ -250,7 +249,7 @@ namespace ModelMappingClass.Tests
                 Name = 12345, // int type, different from the string type in DestinationClass
                 SubClass = new SubClass { Value = "Sub" }
             };
-            var result = _mapper.Map<SourceClassWithMismatchedTypes, DestinationClass>(source);
+            var result = _mapper.Map<DestinationClass>(source);
 
             _output.WriteLine($"Source: Id: {source.Id}, Result: Id: {result.Id}");
             Assert.NotNull(result);
@@ -281,7 +280,7 @@ namespace ModelMappingClass.Tests
         public class SourceClass
         {
             public int Id { get; set; }
-            public string Name { get; set; }
+            public string? Name { get; set; }
             public SubClass? SubClass { get; set; }
         }
 
@@ -295,7 +294,7 @@ namespace ModelMappingClass.Tests
         public class DestinationClass
         {
             public int Id { get; set; }
-            public string Name { get; set; }
+            public string? Name { get; set; }
             public SubClass? SubClass { get; set; }
         }
 
@@ -307,7 +306,7 @@ namespace ModelMappingClass.Tests
 
         public class SubClass
         {
-            public string Value { get; set; }
+            public string? Value { get; set; }
         }
     }
 }
