@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelMappingClass", "ModelM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelMappingClass.Tests", "ModelMappingClass.Tests\ModelMappingClass.Tests.csproj", "{12B77784-40FD-4954-A6AE-813ED5A5E687}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelMappingClass.NetFramework", "ModelMappingClass.NetFramework\ModelMappingClass.NetFramework.csproj", "{B7890BCB-F115-4318-BDB0-594D874DB585}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{12B77784-40FD-4954-A6AE-813ED5A5E687}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12B77784-40FD-4954-A6AE-813ED5A5E687}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12B77784-40FD-4954-A6AE-813ED5A5E687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7890BCB-F115-4318-BDB0-594D874DB585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7890BCB-F115-4318-BDB0-594D874DB585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7890BCB-F115-4318-BDB0-594D874DB585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7890BCB-F115-4318-BDB0-594D874DB585}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
